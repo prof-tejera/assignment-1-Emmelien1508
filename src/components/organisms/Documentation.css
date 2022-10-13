@@ -1,0 +1,31 @@
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  border-collapse: collapse;
+}
+
+.documentation-wrapper {
+    border: 1px solid #121212;
+    margin: 20px 0px;
+}
+
+.documentation-title {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    font-size: 1.3rem;
+}
+
+.documentation-container {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.documentation-component {
+    padding: 25px;
+    display: flex;
+    align-items: center;
+}

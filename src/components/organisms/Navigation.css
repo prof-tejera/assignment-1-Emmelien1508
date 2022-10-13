@@ -1,0 +1,15 @@
+.navigation-menu {
+    background-color: #ebebeb;
+    list-style-type: none;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    padding: 2.5vw 0;
+  }
+  
+  .navigation-menu > li > a {
+    color: #000;
+    text-decoration: none;
+    padding: 0 1vw;
+  }
+  

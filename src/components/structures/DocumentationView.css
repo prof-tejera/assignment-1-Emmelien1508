@@ -1,0 +1,9 @@
+.documentation {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.documentation-title {
+    font-size: 2rem;
+}

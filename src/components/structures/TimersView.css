@@ -1,0 +1,13 @@
+.timers {
+    display: grid;
+    grid-template-columns: repeat(2, 45vw);
+    justify-content: center;
+    height: 45vw;
+}
+
+.timer {
+    border: 1px solid #ebebeb;
+    padding: 20px;
+    margin: 10px;
+    font-size: 1.5rem;
+}

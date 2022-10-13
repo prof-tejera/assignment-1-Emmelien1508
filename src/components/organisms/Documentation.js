@@ -1,39 +1,13 @@
 import React from "react";
-import styled from "styled-components";
-
-const Wrapper = styled.div`
-  border: 1px solid #121212;
-  margin: 20px 0px;
-`;
-
-const Container = styled.div`
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Title = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-top: 20px;
-  font-size: 1.3rem;
-`;
-
-const RenderComponent = styled.div`
-  padding: 25px;
-  display: flex;
-  align-items: center;
-`;
-
-const Documentation = styled.table``;
+import './Documentation.css';
 
 const DocumentComponent = ({ title, component, propDocs }) => {
   return (
-    <Wrapper>
-      <Title>{title}</Title>
-      <Container>
-        <RenderComponent>{component}</RenderComponent>
-        <Documentation>
+    <div className="documentation-wrapper">
+      <div className="documentation-title">{title}</div>
+      <div className="documentation-container">
+        <div className="documentation-component">{component}</div>
+        <table>
           <thead>
             <tr>
               <th>Prop</th>
@@ -56,9 +30,9 @@ const DocumentComponent = ({ title, component, propDocs }) => {
               );
             })}
           </tbody>
-        </Documentation>
-      </Container>
-    </Wrapper>
+        </table>
+      </div>
+    </div>
   );
 };
 
