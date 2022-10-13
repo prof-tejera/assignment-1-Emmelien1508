@@ -1,9 +1,9 @@
 import React from "react";
 
-import Stopwatch from '../atoms/Stopwatch';
-import Countdown from "../atoms/Countdown";
-import XY from '../atoms/XY';
-import Tabata from '../atoms/Tabata';
+import Stopwatch from '../organisms/Stopwatch';
+import Countdown from "../organisms/Countdown";
+import XY from '../organisms/XY';
+import Tabata from '../organisms/Tabata';
 
 import './TimersView.css';
 
