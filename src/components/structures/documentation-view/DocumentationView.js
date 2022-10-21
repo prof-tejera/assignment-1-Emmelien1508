@@ -1,7 +1,7 @@
 import React from "react";
 
-import Documentation from "../organisms/Documentation";
-import Loading from "../organisms/Loading";
+import Documentation from "../../organisms/documentation/Documentation";
+import Loading from "../../organisms/loading/Loading";
 
 import './DocumentationView.css';
 

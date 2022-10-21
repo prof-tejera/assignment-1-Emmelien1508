@@ -1,9 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Navigation from "./components/organisms/Navigation";
-import DocumentationView from './components/structures/DocumentationView';
-import TimersView from "./components/structures/TimersView";
+import Navigation from './components/organisms/navigation/Navigation';
+import DocumentationView from './components/structures/documentation-view/DocumentationView';
+import TimersView from './components/structures/timers-view/TimersView';
+
 
 export default function App() {
     return (

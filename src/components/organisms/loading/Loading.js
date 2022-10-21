@@ -7,15 +7,15 @@ import './Loading.css';
 const primaryColor = "#ffa2bf";
 
 const sizeMapping = {
-  small: 10,
-  medium: 14,
-  large: 20,
+    small: 10,
+    medium: 14,
+    large: 20,
 };
 
 const Dot = styled.span`
-  width: ${(props) => props.size}px;
-  height: ${(props) => props.size}px;
-  background-color: ${(props) => props.color};
+    width: ${(props) => props.size}px;
+    height: ${(props) => props.size}px;
+    background-color: ${(props) => props.color};
 `;
 
 export default function Loading({ size = "medium", color = primaryColor }) {
@@ -34,6 +34,6 @@ export default function Loading({ size = "medium", color = primaryColor }) {
 };
 
 Loading.propTypes = {
-  size: PropTypes.oneOf(["small", "medium", "large"]),
-  color: PropTypes.string,
+    size: PropTypes.oneOf(["small", "medium", "large"]),
+    color: PropTypes.string,
 };

@@ -1,0 +1,15 @@
+.input-buttons {
+    background-color: magenta;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    direction: rtl;
+    justify-content: center;
+}
+
+.input-buttons > div {
+    margin: 5px;
+}
+
+.input-buttons > div:last-child:nth-child(3n - 2) {
+    grid-column-end: 3;
+}

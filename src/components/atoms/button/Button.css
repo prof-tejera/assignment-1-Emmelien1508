@@ -7,9 +7,22 @@
     justify-content: center;
     align-items: center;
     font-size: 0.9rem;
+
+    /* make text within unselectable */
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 }
 
-.button.cancel {
+.button.input {
+    background-color: #333333;
+    border: 2px solid #333333;
+}
+
+.button.reset,
+.button.resume,
+.button.clear {
     background-color: #1C1C1E;
     border: 2px solid #1C1C1E;
 }
@@ -19,7 +32,8 @@
     border: 2px solid #332000;
 }
 
-.button.start {
+.button.start,
+.button.set {
     background-color: #022D12;
     border: 2px solid #022D12;
 }
