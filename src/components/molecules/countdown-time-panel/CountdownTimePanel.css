@@ -1,0 +1,15 @@
+.countdown-panel {
+    background-color: cornflowerblue;
+    text-align: center;
+}
+
+.time-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.time-buttons > p {
+    margin: 0 5px;
+}

@@ -1,5 +1,4 @@
 .input-buttons {
-    background-color: magenta;
     display: grid;
     grid-template-columns: repeat(3, auto);
     direction: rtl;

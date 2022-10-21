@@ -15,9 +15,15 @@
     user-select: none; /* Standard */
 }
 
-.button.input {
+.button.input,
+.button.quantity {
     background-color: #333333;
     border: 2px solid #333333;
+}
+
+.button.small {
+    width: 40px;
+    height: 40px;
 }
 
 .button.reset,

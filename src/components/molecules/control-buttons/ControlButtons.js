@@ -19,7 +19,7 @@ export default function ControlButtons(props) {
                 {props.stopwatch ? "Reset" : "Clear"}
             </Button>
             <Button classes="start" onClick={props.handleStart}>
-                Start
+                {props.countdown ? "Set" : "Start"}
             </Button>
         </div>
     )

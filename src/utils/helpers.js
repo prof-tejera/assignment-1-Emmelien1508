@@ -2,6 +2,8 @@
 // calculates number of minutes when passed in seconds. Things of this nature that you don't want to copy/paste
 // everywhere.
 
+// 1000 ms = 1 second
+
 export function getStopwatchTime(time) {
     const minutes =  Math.floor((time / 60000) % 60)
     const seconds = Math.floor((time / 1000) % 60)
@@ -17,12 +19,12 @@ export function getTime(time) {
     if (stringTime.length <= 2) {
         miliseconds = time
     } else if (stringTime.length <=4 ) {
-        miliseconds = stringTime.slice(-2)
-        seconds = stringTime.slice(-4, -2)
+        miliseconds = stringTime.slice(-3)
+        seconds = stringTime.slice(-5, -3)
     } else {
-        miliseconds = stringTime.slice(-2)
-        seconds = stringTime.slice(-4, -2)
-        minutes = stringTime.slice(-6, -4)
+        miliseconds = stringTime.slice(-3)
+        seconds = stringTime.slice(-5, -3)
+        minutes = stringTime.slice(-7, -5)
     }
 
     return { minutes, seconds, miliseconds }

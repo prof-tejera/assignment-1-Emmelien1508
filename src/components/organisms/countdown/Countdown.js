@@ -45,6 +45,7 @@ export default function Countdown() {
     }, [time])
 
     function handleStart() {
+        // convert ms to correct minutes
         setIsActive(true)
         setIsPaused(false)
     }
