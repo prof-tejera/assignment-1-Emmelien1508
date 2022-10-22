@@ -4,28 +4,9 @@
 
 // 1000 ms = 1 second
 
-export function getStopwatchTime(time) {
+export function getTime(time) {
     const minutes =  Math.floor((time / 60000) % 60)
     const seconds = Math.floor((time / 1000) % 60)
     const miliseconds = ((time / 10) % 100)
-    return { minutes, seconds, miliseconds }
-}
-
-export function getTime(time) {
-    const stringTime = `${time}`
-    let minutes = 0;
-    let seconds = 0;
-    let miliseconds = 0;
-    if (stringTime.length <= 2) {
-        miliseconds = time
-    } else if (stringTime.length <=4 ) {
-        miliseconds = stringTime.slice(-3)
-        seconds = stringTime.slice(-5, -3)
-    } else {
-        miliseconds = stringTime.slice(-3)
-        seconds = stringTime.slice(-5, -3)
-        minutes = stringTime.slice(-7, -5)
-    }
-
     return { minutes, seconds, miliseconds }
 }

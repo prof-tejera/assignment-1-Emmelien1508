@@ -1,8 +1,8 @@
-import { getTime, getStopwatchTime } from '../../../utils/helpers'
+import { getTime } from '../../../utils/helpers'
 import './TimePanel.css'
 
 export default function TimePanel(props) {
-    const { minutes, seconds, miliseconds } = props.stopwatch ? getStopwatchTime(props.time) : getTime(props.time)
+    const { minutes, seconds, miliseconds } = getTime(props.time)
     return (
         <div className='time-panel'>
             <span className="digits">

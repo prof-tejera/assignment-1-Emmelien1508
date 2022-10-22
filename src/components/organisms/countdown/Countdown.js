@@ -1,25 +1,18 @@
 import { useEffect, useState } from 'react';
-import ControlButtons from '../../molecules/control-buttons/ControlButtons';
 
-import InputButtons from '../../molecules/input-buttons/InputButtons';
+import ControlButtons from '../../molecules/control-buttons/ControlButtons';
+import TimeChooser from '../../molecules/time-chooser/TimeChooser';
 import TimePanel from '../../molecules/time-panel/TimePanel';
+
 import './Countdown.css';
 
 export default function Countdown() {
-    const [time, setTime] = useState(0);
-    const [timeCount, setTimeCount] = useState(0);
+    const [isReady, setIsReady] = useState(false)
     const [isActive, setIsActive] = useState(false)
     const [isPaused, setIsPaused] = useState(true)
-
-    function addToTime(e) {
-        if (timeCount < 6) {
-            const newTime = `${time}${e.target.innerText}`
-            setTime(parseInt(newTime))
-            if (!newTime.startsWith("0")) {
-                setTimeCount(timeCount + 1)
-            }
-        }
-    }
+    const [minutes, setMinutes] = useState(1)
+    const [seconds, setSeconds] = useState(0)
+    const [time, setTime] = useState(0)
 
     useEffect(() => {
         let interval = null
@@ -44,8 +37,19 @@ export default function Countdown() {
         }
     }, [time])
 
+    function handleClear() {
+        setMinutes(1)
+        setSeconds(0)
+        setIsReady(false)
+    }
+    
+    function handleSet() {
+        // convert minutes + seconds to ms!
+        setTime(minutes * 60000 + seconds * 1000)
+        setIsReady(true)
+    }
+
     function handleStart() {
-        // convert ms to correct minutes
         setIsActive(true)
         setIsPaused(false)
     }
@@ -56,21 +60,62 @@ export default function Countdown() {
 
     function handleReset() {
         setTime(0)
-        setTimeCount(0)
         setIsActive(false)
+        setIsPaused(true)
     }
 
+    function incrementMinutes() {
+        if (minutes < 60) {
+            setMinutes(minutes + 1)
+        }
+    }
+
+    function decrementMinutes() {
+        if (minutes > 1) {
+            setMinutes(minutes - 1)
+        }
+    }
+
+    function incrementSeconds() {
+        if (seconds === 59) {
+            setMinutes(minutes + 1)
+            setSeconds(0)
+        } else {
+            setSeconds(seconds + 1)
+        }
+    }
+
+    function decrementSeconds() {
+        if (seconds > 1) {
+            setSeconds(seconds - 1)
+        }
+    }
+
+    const panel = (
+        isReady ? 
+        <TimePanel time={time} /> :
+        <TimeChooser 
+            minutes={minutes}
+            seconds={seconds}
+            incrementMinutes={incrementMinutes}
+            decrementMinutes={decrementMinutes}
+            incrementSeconds={incrementSeconds}
+            decrementSeconds={decrementSeconds}
+        /> 
+    )
     return (
         <div className='countdown'>
-            <TimePanel time={time} countdown={true}/>
-            <InputButtons addToTime={addToTime} />
+            {panel}
             <ControlButtons 
                 countdown={true}
                 paused={isPaused}
                 active={isActive}
-                handleStart={handleStart}
-                handleReset={handleReset}
+                ready={isReady}
+                handleClear={handleClear}
                 handlePauseResume={handlePauseResume}
+                handleReset={handleReset}
+                handleSet={handleSet}
+                handleStart={handleStart}
             />
         </div>
     )

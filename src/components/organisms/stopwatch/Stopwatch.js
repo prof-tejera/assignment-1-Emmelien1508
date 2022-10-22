@@ -43,7 +43,7 @@ export default function Stopwatch() {
     
     return (
         <div className="stopwatch">
-            <TimePanel time={time} stopwatch={true}/>
+            <TimePanel time={time} />
             <ControlButtons 
                 stopwatch={true}
                 active={isActive}

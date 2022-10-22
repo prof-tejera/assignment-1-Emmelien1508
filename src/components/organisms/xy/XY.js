@@ -1,21 +1,19 @@
 import { useEffect, useState } from 'react';
-import ControlButtons from '../../molecules/control-buttons/ControlButtons';
 
-import CountdownTimePanel from '../../molecules/countdown-time-panel/CountdownTimePanel';
-import Rounds from '../../molecules/rounds/Rounds';
+import ControlButtons from '../../molecules/control-buttons/ControlButtons';
+import TimeChooser from '../../molecules/time-chooser/TimeChooser';
+import TimePanel from '../../molecules/time-panel/TimePanel';
+// import TimePanel from '../../molecules/time-panel/TimePanel';
 
 import './XY.css';
 
-
-export default function XY() {
-    let initialTime;
-    const [errorMessage, setErrorMessage] = useState(false)
+export default function Countdown() {
+    const [isReady, setIsReady] = useState(false)
     const [isActive, setIsActive] = useState(false)
     const [isPaused, setIsPaused] = useState(true)
-    const [rounds, setRounds] = useState(1)
-    const [time, setTime] = useState(60000)
-    const [minutes, setMinutes] = useState(0)
+    const [minutes, setMinutes] = useState(1)
     const [seconds, setSeconds] = useState(0)
+    const [time, setTime] = useState(0)
 
     useEffect(() => {
         let interval = null
@@ -35,11 +33,22 @@ export default function XY() {
     }, [isActive, isPaused])
 
     useEffect(() => {
-        if (time <= 0 && rounds > 1) {
-            setTime(initialTime)
-            setRounds((rounds) => rounds - 1)
+        if (time <= 0) {
+            handleReset()
         }
-    }, [time, rounds, initialTime])
+    }, [time])
+
+    function handleClear() {
+        setMinutes(1)
+        setSeconds(0)
+        setIsReady(false)
+    }
+    
+    function handleSet() {
+        // convert minutes + seconds to ms!
+        setTime(minutes * 60000 + seconds * 1000)
+        setIsReady(true)
+    }
 
     function handleStart() {
         setIsActive(true)
@@ -51,21 +60,9 @@ export default function XY() {
     }
 
     function handleReset() {
-        setMinutes(0)
-        setSeconds(0)
-    }
-
-    function incrementRounds() {
-        setErrorMessage(false)
-        setRounds(rounds + 1)
-    }
-
-    function decrementRounds() {
-        if (rounds >= 2) {
-            setRounds(rounds - 1)
-        } else {
-            showErrorMessage()
-        }
+        setTime(0)
+        setIsActive(false)
+        setIsPaused(true)
     }
 
     function incrementMinutes() {
@@ -95,36 +92,31 @@ export default function XY() {
         }
     }
 
-    function showErrorMessage() {
-        setErrorMessage(true)
-        setTimeout(() => {
-            setErrorMessage(false)
-        }, 5000)
-    }
-
+    const panel = (
+        isReady ? 
+        <TimePanel time={time} /> :
+        <TimeChooser 
+            minutes={minutes}
+            seconds={seconds}
+            incrementMinutes={incrementMinutes}
+            decrementMinutes={decrementMinutes}
+            incrementSeconds={incrementSeconds}
+            decrementSeconds={decrementSeconds}
+        /> 
+    )
     return (
         <div className='countdown'>
-            <Rounds 
-                rounds={rounds} 
-                errorMessage={errorMessage} 
-                increment={incrementRounds}
-                decrement={decrementRounds}
-            />
-            <CountdownTimePanel 
-                minutes={minutes}
-                seconds={seconds}
-                incrementMinutes={incrementMinutes}
-                decrementMinutes={decrementMinutes}
-                incrementSeconds={incrementSeconds}
-                decrementSeconds={decrementSeconds}
-            />
+            {panel}
             <ControlButtons 
                 countdown={true}
                 paused={isPaused}
                 active={isActive}
-                handleStart={handleStart}
-                handleReset={handleReset}
+                ready={isReady}
+                handleClear={handleClear}
                 handlePauseResume={handlePauseResume}
+                handleReset={handleReset}
+                handleSet={handleSet}
+                handleStart={handleStart}
             />
         </div>
     )
