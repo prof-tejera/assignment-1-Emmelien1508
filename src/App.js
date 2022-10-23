@@ -1,9 +1,11 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Navigation from './components/organisms/navigation/Navigation';
-import DocumentationView from './components/structures/documentation-view/DocumentationView';
-import TimersView from './components/structures/timers-view/TimersView';
+import Countdown from "./components/organisms/countdown/Countdown";
+import Documentation from "./components/organisms/documentation/Documentation";
+import Navigation from './components/structures/navigation/Navigation';
+import Stopwatch from "./components/organisms/stopwatch/Stopwatch";
+import Tabata from "./components/organisms/tabata/Tabata";
+import XY from "./components/organisms/xy/XY";
 
 
 export default function App() {
@@ -12,8 +14,11 @@ export default function App() {
             <Router>
                 <Navigation />
                 <Routes>
-                    <Route path="/docs" element={<DocumentationView />} />
-                    <Route path="/" element={<TimersView />} />
+                    <Route path="/" element={<Documentation />} />
+                    <Route path="/countdown" element={<Countdown />} />
+                    <Route path="/stopwatch" element={<Stopwatch />} />
+                    <Route path="/tabata" element={<Tabata />} />
+                    <Route path="/xy" element={<XY />} />
                 </Routes>
             </Router>
         </div>

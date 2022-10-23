@@ -42,8 +42,10 @@ export default function Stopwatch() {
     }
     
     return (
-        <div className="stopwatch">
-            <TimePanel time={time} />
+        <div className="timer-wrapper">
+            <div className="time-panel-wrapper">
+                <TimePanel time={time} />
+            </div>
             <ControlButtons 
                 stopwatch={true}
                 active={isActive}

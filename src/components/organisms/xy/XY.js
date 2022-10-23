@@ -7,7 +7,7 @@ import TimePanel from '../../molecules/time-panel/TimePanel';
 
 import './XY.css';
 
-export default function Countdown() {
+export default function XY() {
     const [isReady, setIsReady] = useState(false)
     const [isActive, setIsActive] = useState(false)
     const [isPaused, setIsPaused] = useState(true)
@@ -81,9 +81,8 @@ export default function Countdown() {
     function decrementMinutes() {
         if (minutes > 1) {
             setMinutes(minutes - 1)
-        } else {
+        } else if (seconds > 0) {
             setMinutes(0)
-            setSeconds(59)
         }
     }
 
@@ -99,25 +98,35 @@ export default function Countdown() {
     function decrementSeconds() {
         if (seconds > 1) {
             setSeconds(seconds - 1)
+        } else if (minutes > 0) {
+            setSeconds(59)
+            setMinutes(minutes - 1)
         }
     }
 
-    function changeRounds(event) {
-        const field = event.target.parentElement.previousElementSibling
-        if (field.value !== "" || !isNaN(Number(field.value))) {
-            setTotalRounds(parseInt(field.value))
+    function decrementRounds() {
+        if (totalRounds > 1) {
+            setTotalRounds(totalRounds - 1)
         }
+    }
+
+    function incrementRounds() {
+        setTotalRounds(totalRounds + 1)
     }
 
     const timepanel = (
-        <TimePanel time={time} />
+        <div className='time-panel-wrapper'>
+            <p>Round {currentRound}</p>
+            <TimePanel time={time} />
+        </div>
     )
 
     const chooser = (
         <div>
             <RoundChooser 
-                rounds={totalRounds}
-                changeRounds={changeRounds}
+                totalRounds={totalRounds}
+                decrementRounds={decrementRounds}
+                incrementRounds={incrementRounds}
             />
             <TimeChooser 
                 minutes={minutes}
@@ -131,9 +140,8 @@ export default function Countdown() {
     )
 
     return (
-        <div className='countdown'>
+        <div className='timer-wrapper'>
             {isReady ? timepanel : chooser}
-            <div>We are at round {currentRound}</div>
             <ControlButtons 
                 countdown={true}
                 paused={isPaused}

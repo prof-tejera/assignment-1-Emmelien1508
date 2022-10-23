@@ -7,7 +7,7 @@ import TimePanel from '../../molecules/time-panel/TimePanel';
 
 import './Tabata.css';
 
-export default function Countdown() {
+export default function Tabata() {
     const [currentRound, setCurrentRound] = useState(1)
     const [isActive, setIsActive] = useState(false)
     const [isPaused, setIsPaused] = useState(true)
@@ -105,45 +105,17 @@ export default function Countdown() {
         setIsPaused(true)
     }
 
+    function incrementRestMinutes() {
+        if (restMinutes < 60) {
+            setRestMinutes(restMinutes + 1)
+        }
+    }
+
     function decrementRestMinutes() {
         if (restMinutes > 1) {
             setRestMinutes(restMinutes - 1)
-        } else {
+        } else if (restSeconds > 0) {
             setRestMinutes(0)
-            setRestSeconds(59)
-        }
-    }
-
-    function incrementRestMinutes() {
-        if (restSeconds < 60) {
-            setRestMinutes(restSeconds + 1)
-        }
-    }
-
-    function decrementRestSeconds() {
-        if (restSeconds > 1) {
-            setRestSeconds(restSeconds - 1)
-        }
-    }
-
-    function decrementWorkMinutes() {
-        if (workMinutes > 1) {
-            setWorkMinutes(workMinutes - 1)
-        } else {
-            setWorkMinutes(0)
-            setWorkSeconds(59)
-        }
-    }
-
-    function incrementWorkMinutes() {
-        if (workMinutes < 60) {
-            setWorkMinutes(workMinutes + 1)
-        }
-    }
-
-    function decrementWorkSeconds() {
-        if (workSeconds > 1) {
-            setWorkSeconds(workSeconds - 1)
         }
     }
 
@@ -156,62 +128,110 @@ export default function Countdown() {
         }
     }
 
+    function decrementRestSeconds() {
+        if (restSeconds > 1) {
+            setRestSeconds(restSeconds - 1)
+        } else if (restMinutes > 0) {
+            setRestSeconds(59)
+            setRestMinutes(restMinutes - 1)
+        }
+    }
+
+    function incrementWorkMinutes() {
+        if (workMinutes < 60) {
+            setWorkMinutes(workMinutes + 1)
+        }
+    }
+
+    function decrementWorkMinutes() {
+        if (workMinutes > 1) {
+            setWorkMinutes(workMinutes - 1)
+        } else if (workSeconds > 0) {
+            setWorkMinutes(0)
+        }
+    }
+
     function incrementWorkSeconds() {
         if (workSeconds === 59) {
             setWorkMinutes(workMinutes + 1)
             setWorkSeconds(0)
         } else {
-            setRestSeconds(restSeconds + 1)
+            setWorkSeconds(workSeconds + 1)
         }
     }
 
-    function changeRounds(event) {
-        const field = event.target.parentElement.previousElementSibling
-        if (field.value !== "" || !isNaN(Number(field.value))) {
-            setTotalRounds(parseInt(field.value))
+    function decrementWorkSeconds() {
+        if (workSeconds > 1) {
+            setWorkSeconds(workSeconds - 1)
+        } else if (workMinutes > 0) {
+            setWorkSeconds(59)
+            setWorkMinutes(workMinutes - 1)
         }
+    }
+
+    function decrementRounds() {
+        if (totalRounds > 1) {
+            setTotalRounds(totalRounds - 1)
+        }
+    }
+
+    function incrementRounds() {
+        setTotalRounds(totalRounds + 1)
     }
 
     const timepanel = (
-        <div>
-            <p>Rest time</p>
-            <TimePanel time={restTime} />
-            <p>Work time</p>
-            <TimePanel time={workTime} />
+        <div className='time-panel-wrapper'>
+            <p>Round {currentRound}</p>
+            <div className='time-panels'>
+                <div>
+                    <p>Rest<span className='text-md'>🧘🏼</span></p>
+                    <TimePanel time={restTime} />
+                </div>
+                <div>
+                    <p>Work <span className='text-md'>🏋🏼</span></p>
+                    <TimePanel time={workTime} />
+                </div>
+            </div>
         </div>
     )
 
     const chooser = (
-        <div>
+        <div className='choosers'>
             <RoundChooser 
-                rounds={totalRounds}
-                changeRounds={changeRounds}
+                totalRounds={totalRounds}
+                decrementRounds={decrementRounds}
+                incrementRounds={incrementRounds}
             />
-            <p>Rest time:</p>
-            <TimeChooser 
-                minutes={restMinutes}
-                seconds={restSeconds}
-                incrementMinutes={incrementRestMinutes}
-                decrementMinutes={decrementRestMinutes}
-                incrementSeconds={incrementRestSeconds}
-                decrementSeconds={decrementRestSeconds}
-            /> 
-            <p>Work time:</p>
-            <TimeChooser 
-                minutes={workMinutes}
-                seconds={workSeconds}
-                incrementMinutes={incrementWorkMinutes}
-                decrementMinutes={decrementWorkMinutes}
-                incrementSeconds={incrementWorkSeconds}
-                decrementSeconds={decrementWorkSeconds}
-            /> 
+            <div className='time-choosers'>
+                <div>
+                    <p>Rest</p>
+                    <TimeChooser 
+                        minutes={restMinutes}
+                        seconds={restSeconds}
+                        incrementMinutes={incrementRestMinutes}
+                        decrementMinutes={decrementRestMinutes}
+                        incrementSeconds={incrementRestSeconds}
+                        decrementSeconds={decrementRestSeconds}
+                    /> 
+                </div>
+                <div>
+                    <p>Work</p>
+                    <TimeChooser 
+                        minutes={workMinutes}
+                        seconds={workSeconds}
+                        incrementMinutes={incrementWorkMinutes}
+                        decrementMinutes={decrementWorkMinutes}
+                        incrementSeconds={incrementWorkSeconds}
+                        decrementSeconds={decrementWorkSeconds}
+                    /> 
+                </div>
+            </div>
         </div>
     )
 
     return (
-        <div className='countdown'>
+        <div className='timer-wrapper'>
             {isReady ? timepanel : chooser}
-            <div>We are at round {currentRound}</div>
             <ControlButtons 
                 countdown={true}
                 paused={isPaused}

@@ -1,5 +1,5 @@
 .navigation-menu {
-    background-color: #ebebeb;
+    background-color: var(--color-gray4);
     list-style-type: none;
     display: flex;
     flex-flow: row nowrap;
@@ -8,7 +8,7 @@
   }
   
   .navigation-menu > li > a {
-    color: #000;
+    color: var(--black);
     text-decoration: none;
     padding: 0 1vw;
   }

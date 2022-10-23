@@ -1,31 +1,25 @@
-td,
-th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-  border-collapse: collapse;
-}
-
-.documentation-wrapper {
-    border: 1px solid #121212;
-    margin: 20px 0px;
-}
-
-.documentation-title {
+.documentation {
     display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    font-size: 1.3rem;
-}
-
-.documentation-container {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.documentation-component {
-    padding: 25px;
-    display: flex;
+    justify-content: flex-start;
     align-items: center;
+    flex-direction: column;
+}
+
+.documentation-atoms,
+.documentation-molecules {
+    background-color: var(--color-gray4);
+    padding: 2vw;
+    border-radius: 15px;
+}
+
+.documentation-atoms {
+    margin: 2vw;
+}
+
+tr.dark-border {
+    border-bottom: 1px solid var(--color-gray2);
+}
+
+tr.light-border {
+    border-bottom: 1px solid var(--color-gray3);
 }

@@ -73,6 +73,8 @@ export default function Countdown() {
     function decrementMinutes() {
         if (minutes > 1) {
             setMinutes(minutes - 1)
+        } else if (seconds > 0) {
+            setMinutes(0)
         }
     }
 
@@ -88,12 +90,18 @@ export default function Countdown() {
     function decrementSeconds() {
         if (seconds > 1) {
             setSeconds(seconds - 1)
+        } else if (minutes > 0) {
+            setSeconds(59)
+            setMinutes(minutes - 1)
         }
     }
 
     const panel = (
-        isReady ? 
-        <TimePanel time={time} /> :
+        <div className='time-panel-wrapper'>
+            <TimePanel time={time} />
+        </div>
+    )
+    const chooser = (
         <TimeChooser 
             minutes={minutes}
             seconds={seconds}
@@ -103,9 +111,10 @@ export default function Countdown() {
             decrementSeconds={decrementSeconds}
         /> 
     )
+
     return (
-        <div className='countdown'>
-            {panel}
+        <div className='timer-wrapper'>
+            {isReady ? panel : chooser}
             <ControlButtons 
                 countdown={true}
                 paused={isPaused}

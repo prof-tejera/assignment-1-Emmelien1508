@@ -1,0 +1,40 @@
+.choosers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.time-choosers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95%;
+    height: 30vh;
+}
+
+.time-choosers > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.time-choosers > div .timechooser-panel {
+    height: fit-content;
+}
+
+.time-panels {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 95%;
+    padding: 2vw 0;
+}
+
+.time-panels > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
