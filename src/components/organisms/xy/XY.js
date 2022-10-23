@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
 import ControlButtons from '../../molecules/control-buttons/ControlButtons';
+import RoundChooser from '../../molecules/round-chooser/RoundChooser';
 import TimeChooser from '../../molecules/time-chooser/TimeChooser';
 import TimePanel from '../../molecules/time-panel/TimePanel';
-// import TimePanel from '../../molecules/time-panel/TimePanel';
 
 import './XY.css';
 
@@ -11,9 +11,12 @@ export default function Countdown() {
     const [isReady, setIsReady] = useState(false)
     const [isActive, setIsActive] = useState(false)
     const [isPaused, setIsPaused] = useState(true)
-    const [minutes, setMinutes] = useState(1)
-    const [seconds, setSeconds] = useState(0)
+    const [minutes, setMinutes] = useState(0)
+    const [seconds, setSeconds] = useState(3)
     const [time, setTime] = useState(0)
+    const [initialTime, setInitialTime] = useState(0)
+    const [totalRounds, setTotalRounds] = useState(1)
+    const [currentRound, setCurrentRound] = useState(1)
 
     useEffect(() => {
         let interval = null
@@ -22,6 +25,15 @@ export default function Countdown() {
             interval = setInterval(() => {
                 setTime((time) => time - 10)
             }, 10);
+            if (time <= 0) {
+                if (totalRounds === 1) {
+                    handleReset()
+                } else {
+                    setTime(initialTime)
+                    setTotalRounds(totalRounds - 1)
+                    setCurrentRound(currentRound + 1)
+                }
+            }
         } else {
             clearInterval(interval)
         }
@@ -30,13 +42,7 @@ export default function Countdown() {
             clearInterval(interval);
         };
 
-    }, [isActive, isPaused])
-
-    useEffect(() => {
-        if (time <= 0) {
-            handleReset()
-        }
-    }, [time])
+    }, [isActive, isPaused, time, currentRound, initialTime, totalRounds])
 
     function handleClear() {
         setMinutes(1)
@@ -45,8 +51,8 @@ export default function Countdown() {
     }
     
     function handleSet() {
-        // convert minutes + seconds to ms!
         setTime(minutes * 60000 + seconds * 1000)
+        setInitialTime(minutes * 60000 + seconds * 1000)
         setIsReady(true)
     }
 
@@ -60,6 +66,7 @@ export default function Countdown() {
     }
 
     function handleReset() {
+        setCurrentRound(1)
         setTime(0)
         setIsActive(false)
         setIsPaused(true)
@@ -74,6 +81,9 @@ export default function Countdown() {
     function decrementMinutes() {
         if (minutes > 1) {
             setMinutes(minutes - 1)
+        } else {
+            setMinutes(0)
+            setSeconds(59)
         }
     }
 
@@ -92,21 +102,38 @@ export default function Countdown() {
         }
     }
 
-    const panel = (
-        isReady ? 
-        <TimePanel time={time} /> :
-        <TimeChooser 
-            minutes={minutes}
-            seconds={seconds}
-            incrementMinutes={incrementMinutes}
-            decrementMinutes={decrementMinutes}
-            incrementSeconds={incrementSeconds}
-            decrementSeconds={decrementSeconds}
-        /> 
+    function changeRounds(event) {
+        const field = event.target.parentElement.previousElementSibling
+        if (field.value !== "" || !isNaN(Number(field.value))) {
+            setTotalRounds(parseInt(field.value))
+        }
+    }
+
+    const timepanel = (
+        <TimePanel time={time} />
     )
+
+    const chooser = (
+        <div>
+            <RoundChooser 
+                rounds={totalRounds}
+                changeRounds={changeRounds}
+            />
+            <TimeChooser 
+                minutes={minutes}
+                seconds={seconds}
+                incrementMinutes={incrementMinutes}
+                decrementMinutes={decrementMinutes}
+                incrementSeconds={incrementSeconds}
+                decrementSeconds={decrementSeconds}
+            /> 
+        </div>
+    )
+
     return (
         <div className='countdown'>
-            {panel}
+            {isReady ? timepanel : chooser}
+            <div>We are at round {currentRound}</div>
             <ControlButtons 
                 countdown={true}
                 paused={isPaused}
