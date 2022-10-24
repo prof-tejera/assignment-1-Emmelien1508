@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/assignment-1-Emmelien1508/static/css/main.1df40e44.css",
+    "main.js": "/assignment-1-Emmelien1508/static/js/main.72d55f39.js",
+    "index.html": "/assignment-1-Emmelien1508/index.html",
+    "main.1df40e44.css.map": "/assignment-1-Emmelien1508/static/css/main.1df40e44.css.map",
+    "main.72d55f39.js.map": "/assignment-1-Emmelien1508/static/js/main.72d55f39.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1df40e44.css",
+    "static/js/main.72d55f39.js"
+  ]
+}
