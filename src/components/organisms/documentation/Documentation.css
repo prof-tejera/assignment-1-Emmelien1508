@@ -3,11 +3,13 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    background-color: var(--color-gray2);
 }
 
 .documentation-atoms,
 .documentation-molecules {
-    background-color: var(--color-gray4);
+    background-color: var(--black);
+    color: var(--white);
     padding: 2vw;
     border-radius: 15px;
 }

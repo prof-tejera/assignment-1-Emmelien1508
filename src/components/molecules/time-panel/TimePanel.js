@@ -1,5 +1,7 @@
 import { getTime } from '../../../utils/helpers'
+
 import './TimePanel.css'
+
 
 export default function TimePanel(props) {
     const { minutes, seconds, miliseconds } = getTime(props.time)

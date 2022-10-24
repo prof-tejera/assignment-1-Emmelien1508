@@ -1,5 +1,7 @@
 import Button from "../../atoms/button/Button"
-import './ControlButtons.css';
+
+import './ControlButtons.css'
+
 
 export default function ControlButtons(props) {
     if (props.stopwatch) {

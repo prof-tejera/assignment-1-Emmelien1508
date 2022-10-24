@@ -1,15 +1,16 @@
 .navigation-menu {
-    background-color: var(--color-gray4);
+    background-color: var(--black);
     list-style-type: none;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    padding: 2.5vw 0;
-  }
+    align-items: center;
+    height: 100%;
+}
   
-  .navigation-menu > li > a {
-    color: var(--black);
+.navigation-menu > li > a {
+    color: var(--white);
     text-decoration: none;
     padding: 0 1vw;
-  }
+}
   

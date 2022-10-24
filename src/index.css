@@ -41,9 +41,18 @@ code {
 
 .container {
     background: var(--white);
-    height: 100vh;
+    max-height: 100vh;
     width: 100vw;
     overflow: auto;
+    overflow: hidden;
+}
+
+.container > div:first-child {
+    height: 12.5vh;
+}
+
+.container > div:last-child {
+    height: 87.5vh;
 }
 
 .text-xs {
@@ -63,10 +72,22 @@ code {
 }
 
 .timer-wrapper {
+    color: var(--white);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-gray2);
+}
+
+.timer-wrapper > div {
     border-radius: 15px;
     background-color: var(--black);
-    color: var(--white);
-    padding: 1vw;
+    min-height: 30vw;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .time-panel-wrapper {

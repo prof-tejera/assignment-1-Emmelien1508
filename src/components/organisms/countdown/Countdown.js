@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
-import ControlButtons from '../../molecules/control-buttons/ControlButtons';
-import TimeChooser from '../../molecules/time-chooser/TimeChooser';
-import TimePanel from '../../molecules/time-panel/TimePanel';
+import ControlButtons from '../../molecules/control-buttons/ControlButtons'
+import TimeChooser from '../../molecules/time-chooser/TimeChooser'
+import TimePanel from '../../molecules/time-panel/TimePanel'
 
-import './Countdown.css';
+import './Countdown.css'
+
 
 export default function Countdown() {
     const [isReady, setIsReady] = useState(false)
@@ -20,14 +21,14 @@ export default function Countdown() {
         if (isActive && !isPaused) {
             interval = setInterval(() => {
                 setTime((time) => time - 10)
-            }, 10);
+            }, 10)
         } else {
             clearInterval(interval)
         }
 
         return () => {
-            clearInterval(interval);
-        };
+            clearInterval(interval)
+        }
 
     }, [isActive, isPaused])
 
@@ -44,7 +45,6 @@ export default function Countdown() {
     }
     
     function handleSet() {
-        // convert minutes + seconds to ms!
         setTime(minutes * 60000 + seconds * 1000)
         setIsReady(true)
     }
@@ -114,18 +114,20 @@ export default function Countdown() {
 
     return (
         <div className='timer-wrapper'>
-            {isReady ? panel : chooser}
-            <ControlButtons 
-                countdown={true}
-                paused={isPaused}
-                active={isActive}
-                ready={isReady}
-                handleClear={handleClear}
-                handlePauseResume={handlePauseResume}
-                handleReset={handleReset}
-                handleSet={handleSet}
-                handleStart={handleStart}
-            />
+            <div className='countdown'>
+                {isReady ? panel : chooser}
+                <ControlButtons 
+                    countdown={true}
+                    paused={isPaused}
+                    active={isActive}
+                    ready={isReady}
+                    handleClear={handleClear}
+                    handlePauseResume={handlePauseResume}
+                    handleReset={handleReset}
+                    handleSet={handleSet}
+                    handleStart={handleStart}
+                />
+            </div>
         </div>
     )
 }

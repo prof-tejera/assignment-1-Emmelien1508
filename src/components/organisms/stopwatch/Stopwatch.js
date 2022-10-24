@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 
 import ControlButtons from '../../molecules/control-buttons/ControlButtons'
-import TimePanel from "../../molecules/time-panel/TimePanel"
+import TimePanel from '../../molecules/time-panel/TimePanel'
 
 import './Stopwatch.css'
+
 
 export default function Stopwatch() {
     const [isActive, setIsActive] = useState(false)
@@ -16,14 +17,14 @@ export default function Stopwatch() {
         if (isActive && !isPaused) {
             interval = setInterval(() => {
                 setTime((time) => time + 10)
-            }, 10);
+            }, 10)
         } else {
             clearInterval(interval)
         }
 
         return () => {
-            clearInterval(interval);
-        };
+            clearInterval(interval)
+        }
 
     }, [isActive, isPaused])
 
@@ -42,18 +43,20 @@ export default function Stopwatch() {
     }
     
     return (
-        <div className="timer-wrapper">
-            <div className="time-panel-wrapper">
-                <TimePanel time={time} />
+        <div className='timer-wrapper'>
+            <div className='stopwatch'>
+                <div className='time-panel-wrapper'>
+                    <TimePanel time={time} />
+                </div>
+                <ControlButtons 
+                    stopwatch={true}
+                    active={isActive}
+                    paused={isPaused}
+                    handleStart={handleStart}
+                    handlePauseResume={handlePauseResume}
+                    handleReset={handleReset}
+                />
             </div>
-            <ControlButtons 
-                stopwatch={true}
-                active={isActive}
-                paused={isPaused}
-                handleStart={handleStart}
-                handlePauseResume={handlePauseResume}
-                handleReset={handleReset}
-            />
         </div>
     )
 }

@@ -1,22 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
-import ControlButtons from '../../molecules/control-buttons/ControlButtons';
-import RoundChooser from '../../molecules/round-chooser/RoundChooser';
-import TimeChooser from '../../molecules/time-chooser/TimeChooser';
-import TimePanel from '../../molecules/time-panel/TimePanel';
+import ControlButtons from '../../molecules/control-buttons/ControlButtons'
+import RoundChooser from '../../molecules/round-chooser/RoundChooser'
+import TimeChooser from '../../molecules/time-chooser/TimeChooser'
+import TimePanel from '../../molecules/time-panel/TimePanel'
 
-import './XY.css';
+import './XY.css'
+
 
 export default function XY() {
-    const [isReady, setIsReady] = useState(false)
     const [isActive, setIsActive] = useState(false)
     const [isPaused, setIsPaused] = useState(true)
+    const [isReady, setIsReady] = useState(false)
+
+    const [currentRound, setCurrentRound] = useState(1)
+    const [initialRounds, setInitialRounds] = useState(1)
+    const [totalRounds, setTotalRounds] = useState(1)
+
+    const [initialTime, setInitialTime] = useState(0)
     const [minutes, setMinutes] = useState(0)
     const [seconds, setSeconds] = useState(3)
     const [time, setTime] = useState(0)
-    const [initialTime, setInitialTime] = useState(0)
-    const [totalRounds, setTotalRounds] = useState(1)
-    const [currentRound, setCurrentRound] = useState(1)
 
     useEffect(() => {
         let interval = null
@@ -24,7 +28,7 @@ export default function XY() {
         if (isActive && !isPaused) {
             interval = setInterval(() => {
                 setTime((time) => time - 10)
-            }, 10);
+            }, 10)
             if (time <= 0) {
                 if (totalRounds === 1) {
                     handleReset()
@@ -39,20 +43,23 @@ export default function XY() {
         }
 
         return () => {
-            clearInterval(interval);
-        };
+            clearInterval(interval)
+        }
 
     }, [isActive, isPaused, time, currentRound, initialTime, totalRounds])
 
     function handleClear() {
-        setMinutes(1)
-        setSeconds(0)
+        setMinutes(0)
+        setSeconds(3)
         setIsReady(false)
     }
     
     function handleSet() {
+        setInitialRounds(totalRounds)
+
         setTime(minutes * 60000 + seconds * 1000)
         setInitialTime(minutes * 60000 + seconds * 1000)
+
         setIsReady(true)
     }
 
@@ -116,7 +123,7 @@ export default function XY() {
 
     const timepanel = (
         <div className='time-panel-wrapper'>
-            <p>Round {currentRound}</p>
+            <p>Round {currentRound} / {initialRounds}</p>
             <TimePanel time={time} />
         </div>
     )
@@ -141,18 +148,20 @@ export default function XY() {
 
     return (
         <div className='timer-wrapper'>
-            {isReady ? timepanel : chooser}
-            <ControlButtons 
-                countdown={true}
-                paused={isPaused}
-                active={isActive}
-                ready={isReady}
-                handleClear={handleClear}
-                handlePauseResume={handlePauseResume}
-                handleReset={handleReset}
-                handleSet={handleSet}
-                handleStart={handleStart}
-            />
+            <div className='xy'>
+                {isReady ? timepanel : chooser}
+                <ControlButtons 
+                    countdown={true}
+                    paused={isPaused}
+                    active={isActive}
+                    ready={isReady}
+                    handleClear={handleClear}
+                    handlePauseResume={handlePauseResume}
+                    handleReset={handleReset}
+                    handleSet={handleSet}
+                    handleStart={handleStart}
+                />
+            </div>
         </div>
     )
 }

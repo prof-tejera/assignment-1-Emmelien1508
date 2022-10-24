@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
-import ControlButtons from '../../molecules/control-buttons/ControlButtons';
-import RoundChooser from '../../molecules/round-chooser/RoundChooser';
-import TimeChooser from '../../molecules/time-chooser/TimeChooser';
-import TimePanel from '../../molecules/time-panel/TimePanel';
+import ControlButtons from '../../molecules/control-buttons/ControlButtons'
+import RoundChooser from '../../molecules/round-chooser/RoundChooser'
+import TimeChooser from '../../molecules/time-chooser/TimeChooser'
+import TimePanel from '../../molecules/time-panel/TimePanel'
 
-import './Tabata.css';
+import './Tabata.css'
+
 
 export default function Tabata() {
     const [currentRound, setCurrentRound] = useState(1)
@@ -13,6 +14,7 @@ export default function Tabata() {
     const [isPaused, setIsPaused] = useState(true)
     const [isReady, setIsReady] = useState(false)
     const [totalRounds, setTotalRounds] = useState(1)
+    const [initialRounds, setInitialRounds] = useState(1)
 
     const [initialRestTime, setInitialRestTime] = useState(0)
     const [rest, setRest] = useState(true)
@@ -64,7 +66,7 @@ export default function Tabata() {
         return () => {
             clearInterval(restInterval)
             clearInterval(workInterval)
-        };
+        }
 
     }, [currentRound, initialRestTime, initialWorkTime, isActive, isPaused, rest, restTime, totalRounds, work, workTime])
 
@@ -79,6 +81,8 @@ export default function Tabata() {
     }
     
     function handleSet() {
+        setInitialRounds(totalRounds)
+
         setRestTime(restMinutes * 60000 + restSeconds * 1000)
         setInitialRestTime(restMinutes * 60000 + restSeconds * 1000)
 
@@ -181,7 +185,7 @@ export default function Tabata() {
 
     const timepanel = (
         <div className='time-panel-wrapper'>
-            <p>Round {currentRound}</p>
+            <p>Round {currentRound} / {initialRounds}</p>
             <div className='time-panels'>
                 <div>
                     <p>Rest<span className='text-md'>🧘🏼</span></p>
@@ -231,18 +235,20 @@ export default function Tabata() {
 
     return (
         <div className='timer-wrapper'>
-            {isReady ? timepanel : chooser}
-            <ControlButtons 
-                countdown={true}
-                paused={isPaused}
-                active={isActive}
-                ready={isReady}
-                handleClear={handleClear}
-                handlePauseResume={handlePauseResume}
-                handleReset={handleReset}
-                handleSet={handleSet}
-                handleStart={handleStart}
-            />
+            <div className='tabata'>
+                {isReady ? timepanel : chooser}
+                <ControlButtons 
+                    countdown={true}
+                    paused={isPaused}
+                    active={isActive}
+                    ready={isReady}
+                    handleClear={handleClear}
+                    handlePauseResume={handlePauseResume}
+                    handleReset={handleReset}
+                    handleSet={handleSet}
+                    handleStart={handleStart}
+                />
+            </div>
         </div>
     )
 }
