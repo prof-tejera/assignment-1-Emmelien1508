@@ -37,6 +37,7 @@
 .button.input {
     background-color: var(--color-gray2);
     border: 1px solid var(--color-gray3);
+    color: var(--color-gray3);
 }
 
 .button.input:hover {
@@ -48,6 +49,7 @@
 .button.clear {
     background-color: var(--color-gray1);
     border: 1px solid var(--color-gray2);
+    color: var(--color-gray4);
 }
 
 .button.reset:hover,
@@ -59,6 +61,7 @@
 .button.pause {
     background-color: var(--color-brown1);
     border: 1px solid var(--color-brown2);
+    color: var(--color-brown3);
 }
 
 .button.pause:hover {
@@ -69,6 +72,7 @@
 .button.set {
     background-color: var(--color-green1);
     border: 1px solid var(--color-green2);
+    color: var(--color-green3);
 }
 
 .button.start:hover,
@@ -101,4 +105,5 @@
 .button.save {
     background-color: var(--color-gray1);
     border: 1px solid var(--color-gray2);
+    color: var(--color-gray2);
 }
