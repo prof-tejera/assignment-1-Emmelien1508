@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/assignment-1-Emmelien1508/static/css/main.ac8a41fb.css",
-    "main.js": "/assignment-1-Emmelien1508/static/js/main.001e0eb8.js",
+    "main.js": "/assignment-1-Emmelien1508/static/js/main.8fea58aa.js",
     "index.html": "/assignment-1-Emmelien1508/index.html",
     "main.ac8a41fb.css.map": "/assignment-1-Emmelien1508/static/css/main.ac8a41fb.css.map",
-    "main.001e0eb8.js.map": "/assignment-1-Emmelien1508/static/js/main.001e0eb8.js.map"
+    "main.8fea58aa.js.map": "/assignment-1-Emmelien1508/static/js/main.8fea58aa.js.map"
   },
   "entrypoints": [
     "static/css/main.ac8a41fb.css",
-    "static/js/main.001e0eb8.js"
+    "static/js/main.8fea58aa.js"
   ]
 }
