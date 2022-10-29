@@ -15,7 +15,6 @@ export default function App() {
                 <Navigation />
                 <Routes>
                     <Route path='/' element={<Documentation />} />
-                    <Route path='/docs' element={<Documentation />} />
                     <Route path='/countdown' element={<Countdown />} />
                     <Route path='/stopwatch' element={<Stopwatch />} />
                     <Route path='/tabata' element={<Tabata />} />
