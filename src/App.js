@@ -1,43 +1,26 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import styled from "styled-components";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-import DocumentationView from "./views/DocumentationView";
-import TimersView from "./views/TimersView";
+import Countdown from './components/organisms/countdown/Countdown'
+import Documentation from './components/organisms/documentation/Documentation'
+import Navigation from './components/structures/navigation/Navigation'
+import Stopwatch from './components/organisms/stopwatch/Stopwatch'
+import Tabata from './components/organisms/tabata/Tabata'
+import XY from './components/organisms/xy/XY'
 
-const Container = styled.div`
-  background: #f0f6fb;
-  height: 100vh;
-  overflow: auto;
-`;
 
-const Nav = () => {
-  return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Timers</Link>
-        </li>
-        <li>
-          <Link to="/docs">Documentation</Link>
-        </li>
-      </ul>
-    </nav>
-  );
-};
-
-const App = () => {
-  return (
-    <Container>
-      <Router>
-        <Nav />
-        <Routes>
-          <Route path="/docs" element={<DocumentationView />} />
-          <Route path="/" element={<TimersView />} />
-        </Routes>
-      </Router>
-    </Container>
-  );
-};
-
-export default App;
+export default function App() {
+    return (
+        <div className='container'>
+            <Router>
+                <Navigation />
+                <Routes>
+                    <Route path='/' element={<Documentation />} />
+                    <Route path='/countdown' element={<Countdown />} />
+                    <Route path='/stopwatch' element={<Stopwatch />} />
+                    <Route path='/tabata' element={<Tabata />} />
+                    <Route path='/xy' element={<XY />} />
+                </Routes>
+            </Router>
+        </div>
+    )
+}

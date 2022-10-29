@@ -1,0 +1,18 @@
+.time-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.time-panel > p:not(.digits) {
+    font-size: var(--size-lg);
+}
+  
+.digits {
+    font-size: var(--size-xl);
+    color: var(--white);
+}
+  
+.milliseconds {
+    color:  var(--color-red1);
+}

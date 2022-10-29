@@ -1,0 +1,28 @@
+.timechooser-panel {
+    text-align: center;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.time-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.time-buttons > div {
+    align-items: center;
+    background-color: var(--color-gray2);
+    border-radius: 40px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.time-buttons > p {
+    margin: 0 3px;
+    font-size: var(--size-lg);
+}

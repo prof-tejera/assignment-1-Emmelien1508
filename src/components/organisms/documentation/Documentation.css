@@ -1,0 +1,55 @@
+.documentation {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--color-gray2);
+    overflow-y: scroll;
+    padding-top: 25px;
+}
+
+.documentation-introduction,
+.documentation-atoms,
+.documentation-molecules {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 2vw;
+    border-radius: 15px;
+    width: 60vw;
+}
+
+.documentation-introduction > * {
+    margin: 10px 0;
+}
+
+.documentation-introduction > a {
+    color: var(--color-brown3);
+}
+
+table {
+    width: 100%;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    text-align: left;
+    border: 1px solid var(--color-gray2);
+}
+
+th, td {
+    padding: 10px;
+}
+
+.documentation-atoms {
+    margin: 2vw;
+}
+
+tr.dark-border {
+    border-bottom: 1px solid var(--color-gray2);
+}
+
+tr.light-border {
+    border-bottom: 1px solid var(--color-gray3);
+}

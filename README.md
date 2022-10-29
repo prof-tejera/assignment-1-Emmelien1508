@@ -23,7 +23,7 @@ Our larger components are going to be `Stopwatch`, `Countdown`, `XY`, and `Tabat
 2. You should try to DRY up your code by creating generic components that are going to be used by your timers. The most basic ones, but not limited to, are going to be a `Button`, `Input`, `DisplayTime`, `DisplayRounds`, and `Panel` (that handles layout of your timer). 
 3. For now you are going to want to store all state in the timers themselves.
 4. Style your components in a way that they are consistent and look presentable. Do not use an existing UI design library (e.g. MUI or Antd), instead try to come up with your own. **You are welcome to search the internet for design inspiration, but make sure to cite all resources you have used.**
-5. Deploy your application using any method you like (we will provide instructions for GH actions): **URL_TO_APP**
+5. Deploy your application using any method you like (we will provide instructions for GH actions): https://prof-tejera.github.io/assignment-1-Emmelien1508
 
 ### Deployment Instructions (Github actions)
 
